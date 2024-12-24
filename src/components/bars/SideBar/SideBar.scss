@@ -1,0 +1,8 @@
+@use "../../../styles/variables" as *;
+
+.nav {
+	width: $logo-size * 2;
+	background-color: var(--primary-bg);
+	height: 100vh;
+	color: var(--primary-text);
+}

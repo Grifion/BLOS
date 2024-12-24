@@ -1,0 +1,9 @@
+$bar-height: 50px;
+$logo-size: 30px;
+$gap: 10px;
+$line-height: 10px;
+$padding-block: calc(($bar-height / 2) - $line-height);
+$padding-inline: $line-height;
+
+$sidebar-width: calc($logo-size + (padding-inline * 2));
+$icon-size: 20px;

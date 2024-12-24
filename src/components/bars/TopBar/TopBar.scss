@@ -1,0 +1,60 @@
+@use "../../../styles/variables" as *;
+
+.top-bar {
+  height: $bar-height;
+  background-color: var(--primary-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    height: $logo-size;
+    fill: var(--primary-text);
+
+		//add animation
+  }
+}
+
+.nav {
+  &-list {
+    display: flex;
+    gap: $gap;
+  }
+
+  &__link {
+    line-height: $line-height;
+    color: var(--primary-text);
+    padding-block: $padding-block;
+    padding-inline: $padding-inline;
+
+    &-anim {
+      transition: padding 0.3s ease, transform 0.3s ease, font-size 0.3s ease,
+        font-weight 0.3s ease;
+
+      &:hover { // animation for links
+        transform: scale(1.1);
+        padding: calc($padding-block * 0.95), calc($padding-inline * 1.2); /* Increase padding on hover */
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.icon {
+  height: $icon-size;
+  width: $icon-size;
+}
+
+.btn {
+  background: none;
+  border: 1px solid;
+  border-radius: 50%;
+  height: calc($icon-size * 2);
+  width: calc($icon-size * 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: var(--primary-text);
+	//add animation
+}
