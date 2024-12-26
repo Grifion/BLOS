@@ -1,39 +1,35 @@
-// import { useState } from "react";
-// import "./NewTask.scss";
-// import { Save } from "../buttons/Save/Save";
+import { useState } from "react";
+import "./NewTask.scss";
+import { Save } from "../buttons/Save/Save";
+import { Task  } from "../../../types"; 
 
-// export const NewTask = () => {
-// 	const [title, setTitle] = useState("Title");
-// 	const [text, setText] = useState("Text");
+type Props = {
+  setData: React.Dispatch<React.SetStateAction<Task[]>>;
+};
 
-// 	type Task = {
-// 		title: string;
-// 		text: string;
-// 	}
+export const NewTask: React.FC<Props> = ({ setData }) => {
+  const [title, setTitle] = useState("Title");
+  const [text, setText] = useState("Text");
 
-// 	const task: Task = {
-// 		title: title,
-// 		text: text,
-// 	}
+  const task: Task = { title, text };
 
-//   return (
-//     <>
-//       <form className="form">
-//         <input
-//           className="input input__title"
-//           type="text"
-//           onChange={(e) => {
-// 						setTitle(e.target.value);
-//           }}
-//           defaultValue={"Title"}
-//         ></input>
-// 				<input className="input input__text" type="text" onChange={(e) => {
-// 					setText(e.target.value);
-// 				}}/>
-// 				<Save title={task} />
-//       </form>
-
-//       <p>{title}</p>
-//     </>
-//   );
-// };
+  return (
+    <>
+      <form className="form">
+        <input
+          className="input input__title"
+          type="text"
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
+        />
+        <input
+          className="input input__text"
+          type="text"
+          onChange={(e) => setText(e.target.value)}
+          value={text}
+        />
+        <Save task={task} setData={setData} />
+      </form>
+    </>
+  );
+};
