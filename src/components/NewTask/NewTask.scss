@@ -1,0 +1,27 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.bi {
+	height: $icon-size;
+	width: $icon-size;
+}
+
+.form {
+	@include task;
+	display: flex;
+	flex-direction: column;
+}
+
+.input {
+	&__title {
+		@include primary-text;
+
+		margin-bottom: 10px;
+		color: var(--primary-text);
+	}
+
+		&__text {
+		@include secondary-text;
+		color: var(--primary-text);
+	}
+}

@@ -1,0 +1,6 @@
+@use '../../../styles/variables' as *;
+
+.add-task {
+	width: $button-size;
+	height: $button-size;
+}
