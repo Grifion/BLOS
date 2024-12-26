@@ -1,0 +1,19 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins.scss' as *;
+
+.task {
+	@include task;
+
+	&-title {
+		@include primary-text;
+
+		margin: 0;
+		color: var(--primary-text);
+	}
+
+	&-text {
+		@include secondary-text;
+		margin: 0;
+		color: var(--primary-text);
+	}
+}

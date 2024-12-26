@@ -1,4 +1,5 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .top-bar {
   height: $bar-height;
@@ -6,11 +7,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+	border-bottom: 1px solid var(--primary-text);
 
   &__logo {
-    height: $logo-size;
+    height: calc($icon-size * 1.3);
     fill: var(--primary-text);
-
 		//add animation
   }
 }
@@ -22,6 +23,8 @@
   }
 
   &__link {
+		@include primary-text($weight: 14px);
+
     line-height: $line-height;
     color: var(--primary-text);
     padding-block: $padding-block;
@@ -41,11 +44,6 @@
   }
 }
 
-.icon {
-  height: $icon-size;
-  width: $icon-size;
-}
-
 .btn {
   background: none;
   border: 1px solid;
@@ -56,5 +54,6 @@
   justify-content: center;
   align-items: center;
   fill: var(--primary-text);
+	margin-right: $padding-inline;
 	//add animation
 }

@@ -1,8 +1,22 @@
 @use "../../../styles/variables" as *;
 
 .nav {
-	width: $logo-size * 2;
+	width: $bar-height;
 	background-color: var(--primary-bg);
 	height: 100vh;
 	color: var(--primary-text);
+	border-right: 1px solid var(--primary-text);
+
+	//for buttons
+	display: flex;
+	flex-direction: column;
+	gap: $gap-betwin-buttons;
+	align-items: center;
+	padding-top: $gap-betwin-buttons;
+
+	// sticky to top
+	position: sticky;
+	box-sizing: border-box;
+  top: 0;
+  z-index: 10;
 }
