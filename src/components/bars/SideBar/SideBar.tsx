@@ -9,9 +9,5 @@ type Props = {
 export const SideBar: React.FC<Props> = ({ board }) => (
   <nav className="nav">
     {board && <AddTask />}
-    {board && <AddTask />}
-    {board && <AddTask />}
-    {board && <AddTask />}
-    {board && <AddTask />}
   </nav>
 );
