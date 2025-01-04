@@ -11,7 +11,7 @@
 
   &__logo {
     height: calc($icon-size * 1.3);
-    fill: var(--primary-text);
+    fill-rule: var(--primary-text);
 		//add animation
   }
 }

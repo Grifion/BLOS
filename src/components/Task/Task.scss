@@ -1,19 +1,21 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
 
-.task {
-	@include task;
+.task-block {
+	background-color: var(--secondary-bg);
+	border: 1px solid var(--primary-text);
+	padding-inline: $padding-inline;
+	padding-block: $padding-block;
+	border-radius: $border-radius;
+	color: var(--primary-text);
 
-	&-title {
-		@include primary-text;
-
-		margin: 0;
+	&__input {
+		background-color: var(--secondary-bg);
+		border: none;
 		color: var(--primary-text);
-	}
 
-	&-text {
-		@include secondary-text;
-		margin: 0;
-		color: var(--primary-text);
+		&:focus {
+			border: none;
+			outline: none;
+		}
 	}
 }
