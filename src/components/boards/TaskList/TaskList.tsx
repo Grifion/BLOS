@@ -1,19 +1,11 @@
 import { useState, useEffect } from "react";
-import { Task } from "../../Task/Task";
-import { Task as TaskType } from "../../../../types";
-import { NewTask } from "../../NewTask";
+import { TaskType } from "../../../../types";
+import { Task } from "../../Task";
+import './TaskList.scss';
 
 export const TaskList = () => {
   const [currentData, setData] = useState<TaskType[]>([]); // Стейт для даних завдань
 
-  // Функція для оновлення завдання
-  const updateTask = (updatedTask: TaskType) => {
-    setData((prevTasks) =>
-      prevTasks.map(
-        (task) => (task.id === updatedTask.id ? updatedTask : task) // Оновлюємо завдання в глобальному стані
-      )
-    );
-  };
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -34,12 +26,12 @@ export const TaskList = () => {
 
   return (
     <div className="task-list">
-      <NewTask setData={setData} />
+      <Task setData={setData} />
       {currentData.map((task) => (
         <Task
           key={task.id}
           task={task}
-          updateTask={updateTask} // Оновлюємо завдання в батьківському компоненті
+          setData={setData} // Оновлюємо завдання в батьківському компоненті
         />
       ))}
     </div>
