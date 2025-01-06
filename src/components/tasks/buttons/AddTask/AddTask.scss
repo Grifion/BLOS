@@ -4,18 +4,17 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
-	background-color: var(--primary-bg);
-	border: none;
+  background-color: var(--primary-bg);
+  border: none;
 
   display: flex;
 
   &__svg {
     border: 1px solid var(--primary-text);
-		fill: var(--primary-text);
+    fill: var(--primary-text);
     border-radius: 50px;
     width: 30px;
     height: 30px;
     transition: transform 0.3s ease;
   }
 }
-

@@ -1,8 +1,6 @@
 import { useContext } from "react";
-import { ThemeContextType, ThemeContext } from "../../types"; 
+import { ThemeContextType, ThemeContext } from "../../types";
 import { Subtask } from "../../types";
-
-
 
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
@@ -13,7 +11,6 @@ export const useTheme = (): ThemeContextType => {
 
   return context;
 };
-
 
 export const updateSubtaskState = (
   subtasks: Subtask[],

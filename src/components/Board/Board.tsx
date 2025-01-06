@@ -6,8 +6,8 @@ import "./Board.scss";
 import { useState } from "react";
 
 type Props = {
-	board: BoardType;
-}
+  board: BoardType;
+};
 
 export const Board: React.FC<Props> = ({ board }) => {
   const [isSaving, setIsSaving] = useState<boolean>(false);
@@ -32,17 +32,15 @@ export const Board: React.FC<Props> = ({ board }) => {
     } catch (error) {
       console.error("Error saving new task:", error);
     }
-	};
-	
-	
+  };
 
   return (
     <div className="board">
       <SideBar
         addNewTask={addNewTask}
         isSaving={isSaving}
-				changeVDelete={changeVDelete}
-				board={board}
+        changeVDelete={changeVDelete}
+        board={board}
       />
       {board === BoardType.Tasks && (
         <TaskList

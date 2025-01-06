@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 @mixin primary-text(
   $color: var(--primary-text),
@@ -16,7 +16,6 @@
   letter-spacing: $spacing;
 }
 
-// Mixin для secondary-text
 @mixin secondary-text(
   $color: var(--primary-text),
   $size: 14,
@@ -36,17 +35,18 @@
 }
 
 @mixin task {
-	padding-inline: $padding-inline;
-	padding-block: $padding-block;
-	width: fit-content;
-	height: fit-content;
-	background-color: var(--primary-bg);
+  padding-inline: $padding-inline;
+  padding-block: $padding-block;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--primary-bg);
 
-	border: 1px solid var(--primary-text);
-	border-radius: 10px;
+  border: 1px solid var(--primary-text);
+  border-radius: 10px;
 }
 
-@mixin move-to-up { // for move inputs & save button
-	position: relative;
-	bottom: calc($icon-size * 1.5);
+@mixin move-to-up {
+  // for move inputs & save button
+  position: relative;
+  bottom: calc($icon-size * 1.5);
 }

@@ -9,6 +9,6 @@ export const CheckBox: React.FC<Props> = ({ isDone, setDone }) => (
   <input
     type="checkbox"
     checked={isDone}
-    onChange={(e) => setDone(e.target.checked)} // Оновлюємо стан чекбоксу
+    onChange={(e) => setDone(e.target.checked)} 
   />
 );

@@ -1,21 +1,21 @@
-@use '../../../styles/variables' as *;
+@use "../../../styles/variables" as *;
 
 .task-block {
-	background-color: var(--secondary-bg);
-	border: 1px solid var(--primary-text);
-	padding-inline: $padding-inline;
-	padding-block: $padding-block;
-	border-radius: $border-radius;
-	color: var(--primary-text);
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--primary-text);
+  padding-inline: $padding-inline;
+  padding-block: $padding-block;
+  border-radius: $border-radius;
+  color: var(--primary-text);
 
-	&__input {
-		background-color: var(--secondary-bg);
-		border: none;
-		color: var(--primary-text);
+  &__input {
+    background-color: var(--secondary-bg);
+    border: none;
+    color: var(--primary-text);
 
-		&:focus {
-			border: none;
-			outline: none;
-		}
-	}
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
 }

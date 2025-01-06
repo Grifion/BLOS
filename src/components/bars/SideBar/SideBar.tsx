@@ -8,8 +8,8 @@ import { BoardType } from "../../../../types";
 type Props = {
   addNewTask: () => void;
   isSaving: boolean;
-	changeVDelete: () => void;
-	board: BoardType;
+  changeVDelete: () => void;
+  board: BoardType;
 };
 
 export const SideBar: React.FC<Props> = ({
@@ -20,12 +20,13 @@ export const SideBar: React.FC<Props> = ({
 }) => (
   <nav className="nav">
     <ul className="nav-controls">
-			<li className="nav-controls__item">
-				{board === BoardType.Tasks &&
-					<> 
-        		<AddTask addNewTask={addNewTask} />
-        		<Delete changeVDelete={changeVDelete} />
-				</>}
+      <li className="nav-controls__item">
+        {board === BoardType.Tasks && (
+          <>
+            <AddTask addNewTask={addNewTask} />
+            <Delete changeVDelete={changeVDelete} />
+          </>
+        )}
       </li>
       <li className="nav-controls__item align-end">{isSaving && <Save />}</li>
     </ul>

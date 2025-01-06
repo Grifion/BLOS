@@ -5,12 +5,12 @@ import { Board } from "./components/Board";
 import { BoardType } from "../types";
 
 function App() {
-		const [board, setBoard] = useState(BoardType.Overview);
+  const [board, setBoard] = useState(BoardType.Overview);
 
   return (
     <>
       <TopBar setBoard={setBoard} />
-			<Board board={board} />
+      <Board board={board} />
     </>
   );
 }

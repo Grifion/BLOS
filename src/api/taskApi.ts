@@ -25,7 +25,6 @@ export const addTask = async (task: TaskType): Promise<TaskType> => {
   return response.json();
 };
 
-// Update an existing task
 export const updateTask = async (task: TaskType): Promise<TaskType> => {
   const response = await fetch(`http://localhost:2001/tasks/${task.id}`, {
     method: "PUT",
@@ -39,7 +38,6 @@ export const updateTask = async (task: TaskType): Promise<TaskType> => {
   return response.json();
 };
 
-// Delete a task
 export const deleteTaskApi = async (id: string): Promise<void> => {
   const response = await fetch(`http://localhost:2001/tasks/${id}`, {
     method: "DELETE",

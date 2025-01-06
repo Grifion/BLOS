@@ -1,20 +1,19 @@
 // _save-button.scss
 
-@use '../../../../styles/variables' as *;
+@use "../../../../styles/variables" as *;
 
 .btn-save {
   height: calc($icon-size * 1.5);
   width: calc($icon-size * 1.5);
   background: none;
   fill: var(--primary-text);
-	border: none;
-	position: fixed;
-	bottom: $gap;
-	left: $padding-inline;
+  border: none;
+  position: fixed;
+  bottom: $gap;
+  left: $padding-inline;
 }
 
 .bi {
   height: $icon-size;
   width: $icon-size;
 }
-

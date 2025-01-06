@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useTheme } from "../../../functions";
 import { BoardType } from "../../../../types";
-import './TopBar.scss';
+import "./TopBar.scss";
 
 type Props = {
   setBoard: (board: BoardType) => void;

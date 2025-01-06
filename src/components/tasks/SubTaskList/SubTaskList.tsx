@@ -1,7 +1,7 @@
 import React from "react";
-import { Subtask } from "../../../types";
 import { CheckBox } from "../buttons/CheckBox";
 import "./SubTask.scss";
+import { Subtask } from "../../../../types";
 
 type Props = {
   subtasks: Subtask[];
