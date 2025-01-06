@@ -26,6 +26,8 @@
 		@include primary-text($weight: 14px);
 
     line-height: $line-height;
+		background-color: var(--primary-bg);
+		border: none;
     color: var(--primary-text);
     padding-block: $padding-block;
     padding-inline: $padding-inline;
@@ -55,5 +57,7 @@
   align-items: center;
   fill: var(--primary-text);
 	margin-right: $padding-inline;
+
+	
 	//add animation
 }

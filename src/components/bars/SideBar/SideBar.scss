@@ -7,12 +7,15 @@
 	color: var(--primary-text);
 	border-right: 1px solid var(--primary-text);
 
-	//for buttons
-	display: flex;
-	flex-direction: column;
-	gap: $gap-betwin-buttons;
-	align-items: center;
-	padding-top: $gap-betwin-buttons;
+
+	&-controls {
+		//for buttons
+		display: flex;
+		flex-direction: column;
+		gap: $gap-betwin-buttons;
+		align-items: center;
+		padding-top: $gap-betwin-buttons;
+	}
 
 	// sticky to top
 	position: sticky;
