@@ -2,12 +2,12 @@
 @use '../../../styles/mixins' as *;
 
 .task-list {
-	width: calc(100vw - $bar-height);
+	width: $task-list-width;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	gap: $gap;
 	padding-inline: $padding-inline;
-	padding-block: $padding-block;
+	padding-block: $padding-inline;
 	align-content: flex-start;
 }

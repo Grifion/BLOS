@@ -21,3 +21,10 @@ export interface ThemeContextType {
 }
 
 export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+
+export enum BoardType {
+  Overview = "Overview",
+  Notes = "Notes",
+  Tasks = "Tasks",
+  About = "About"
+}
