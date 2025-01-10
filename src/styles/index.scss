@@ -1,25 +1,45 @@
 body {
-	margin: 0;
-	font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
-:root { // default light theme
+:root {
+  // default light theme
   --primary-bg: #ffffff;
   --primary-text: #000000;
   --secondary-bg: #f4f4f4;
   --button-bg: #007bff;
   --button-text: #ffffff;
+
+    --first-color: #ff5733; /* Red */
+    --second-color: #ffc300; /* Orange */
+    --third-color: #ffd700; /* Yellow */
+    --fourth-color: #28a745; /* Green */
+    --fifth-color: #007bff; /* Blue */
+    --sixth-color: #6f42c1; /* Purple */
+    --seventh-color: #e83e8c; /* Pink */
 }
 
-[data-theme='dark'] { // dark theme
+[data-theme="dark"] {
+  // dark theme
   --primary-bg: #1e1e1e;
   --primary-text: #ffffff;
   --secondary-bg: #333333;
   --button-bg: #6200ee;
   --button-text: #ffffff;
+
+  --first-color: #c13d1b; /* Dark Red */
+  --second-color: #b77f00; /* Dark Orange */
+  --third-color: #cda100; /* Dark Yellow */
+  --fourth-color: #1d7a34; /* Dark Green */
+  --fifth-color: #0056b3; /* Dark Blue */
+  --sixth-color: #5b2790; /* Dark Purple */
+  --seventh-color: #9b2d63; /* Dark Pink */
 }
 
-ul, ol { // clear all list styles
+ul,
+ol {
+  // clear all list styles
   list-style: none;
   padding: 0;
   margin: 0;
@@ -34,4 +54,4 @@ a {
   color: inherit;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");

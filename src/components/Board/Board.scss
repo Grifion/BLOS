@@ -1,6 +1,6 @@
-@use '../../styles/variables' as *;
+@use "../../styles/variables" as *;
 
 .board {
-	background-color: var(--secondary-bg);
-	display: flex;
+  background-color: var(--secondary-bg);
+  display: flex;
 }

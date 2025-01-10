@@ -1,0 +1,60 @@
+@use "../../../styles/variables" as *;
+
+.circle {
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: 50%; 
+
+  &__data {
+    width: calc($circle-size - ($circle-size / 10));
+    height:  calc($circle-size - ($circle-size / 10));
+    background-color: var(--secondary-bg);
+    border-radius: 50%;
+    margin: calc($circle-size / 20);
+
+		font-size: calc($circle-size / 8);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+
+    &-text {
+      margin: 0;
+    }
+  }
+}
+
+.stats {
+  width: calc($circle-size * 2);
+  height: $circle-size;
+  display: flex;
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    gap: calc($circle-size / 20);
+
+    &-label {
+      display: flex;
+      align-items: center;
+			font-size: calc($circle-size / 10);
+    }
+
+    &-text {
+      display: flex;
+      padding-left: calc($circle-size / 20);
+      gap: calc($circle-size / 20);
+      color: var(--primary-text);
+      align-items: center;
+    }
+
+    &-circle {
+      height: calc(($circle-size / 20) * 1.5);
+      width: calc(($circle-size / 20) * 1.5);
+      border-radius: 50%;
+    }
+  }
+}

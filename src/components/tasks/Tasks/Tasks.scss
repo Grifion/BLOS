@@ -1,0 +1,13 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
+
+.task-list {
+  width: $task-list-width;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: $gap;
+  padding-inline: $padding-inline;
+  padding-block: $padding-inline;
+  align-content: flex-start;
+}

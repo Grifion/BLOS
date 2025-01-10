@@ -1,15 +1,22 @@
-.subtask-list {
+@use '../../../styles/mixins.scss' as *;
 
-  &__item {
+.subtask {
+  &__delete {
+		@include delete-button;
+  }
 
-    &-text {
-      color: var(--primary-text);
-      background-color: var(--secondary-bg);
-      border: none;
-
-      &:focus {
+  &-list {
+    &__item {
+      &-text {
+        color: var(--primary-text);
+        background-color: var(--secondary-bg);
         border: none;
-        outline: none;
+				align-items: baseline;
+
+        &:focus {
+          border: none;
+          outline: none;
+        }
       }
     }
   }

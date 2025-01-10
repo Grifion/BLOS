@@ -1,4 +1,4 @@
-@use './variables' as *;
+@use "./variables" as *;
 
 @mixin primary-text(
   $color: var(--primary-text),
@@ -16,7 +16,6 @@
   letter-spacing: $spacing;
 }
 
-// Mixin для secondary-text
 @mixin secondary-text(
   $color: var(--primary-text),
   $size: 14,
@@ -35,18 +34,41 @@
   text-transform: none;
 }
 
-@mixin task {
-	padding-inline: $padding-inline;
-	padding-block: $padding-block;
-	width: fit-content;
-	height: fit-content;
-	background-color: var(--primary-bg);
-
-	border: 1px solid var(--primary-text);
-	border-radius: 10px;
+@mixin move-to-up {
+  // for move inputs & save button
+  position: relative;
+  bottom: calc($icon-size * 1.5);
 }
 
-@mixin move-to-up { // for move inputs & save button
-	position: relative;
-	bottom: calc($icon-size * 1.5);
+@mixin control-button($size: 1) {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  background-color: var(--primary-bg);
+  border: none;
+  display: flex;
+
+  &__svg {
+    border: 1px solid var(--primary-text);
+    fill: var(--primary-text);
+    // border-radius: 50px;
+    height: calc($icon-size * $size);
+    width: calc($icon-size * $size);
+    transition: transform 0.3s ease;
+  }
 }
+
+@mixin delete-button {
+	padding-top: 2px;
+  background-color: var(--secondary-bg);
+  border: none;
+
+  &__svg {
+    fill: var(--primary-text);
+    border: 1px solid var(--primary-text);
+    height: calc($icon-size / 2);
+    width: calc($icon-size / 2);
+    display: block; // Зробимо SVG блочним елементом, щоб він не розтягувався по ширині
+  }
+}
+

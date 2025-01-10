@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Task } from "../Task";
-import "./TaskList.scss";
-import { TaskType } from "../../../../types";
-import { deleteTaskApi, fetchTasks } from "../../../api/taskApi";
+import "./Tasks.scss";
+import { changeTaskPriorityApi, deleteTaskApi, fetchTasks } from "../../../api/taskApi";
+import { TaskType } from "../../../types";
 
 type Props = {
   newTaskVisible: boolean;
@@ -11,15 +11,17 @@ type Props = {
   addNewTask: () => void; // Add new task function passed from parent
   tasks: TaskType[]; // Tasks state passed from parent
   setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>; // setTasks function passed from parent
+  priorityVisible: boolean;
 };
 
-export const TaskList: React.FC<Props> = ({
+export const Tasks: React.FC<Props> = ({
   newTaskVisible,
   setIsSaving,
   deleteVisible,
   addNewTask,
   tasks,
   setTasks,
+  priorityVisible,
 }) => {
   const deleteTask = async (id: string) => {
     try {
@@ -28,7 +30,28 @@ export const TaskList: React.FC<Props> = ({
     } catch (error) {
       console.error("Failed to delete task", error);
     }
-  };
+	};
+	
+const changeTaskPriority = async (id: string, newPriority: number) => {
+  if (newPriority < 1 || newPriority > 10) {
+    console.error("Priority must be between 1 and 10");
+    return;
+  }
+
+  try {
+    await changeTaskPriorityApi(id, newPriority); // Call API to update priority
+
+    // Update local state with new priority
+    setTasks((prev) =>
+      prev.map((task: TaskType) =>
+        task.id === id ? { ...task, priority: newPriority } : task
+      )
+    );
+  } catch (error) {
+    console.error("Failed to change task priority", error);
+  }
+};
+
 
   // Fetch the tasks on initial load
   useEffect(() => {
@@ -44,7 +67,7 @@ export const TaskList: React.FC<Props> = ({
     loadTasks();
   }, [setTasks]);
 
-  // Trigger adding the task when `newTaskVisible` changes to `true`
+  // Trigger adding the task when newTaskVisible changes to true
   useEffect(() => {
     if (newTaskVisible) {
       addNewTask();
@@ -61,6 +84,8 @@ export const TaskList: React.FC<Props> = ({
           setSaving={setIsSaving}
           deleteVisible={deleteVisible}
           deleteTask={deleteTask}
+					priorityVisible={priorityVisible}
+					changeTaskPriority={changeTaskPriority}
         />
       ))}
     </div>

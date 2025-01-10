@@ -1,25 +1,38 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .nav {
-	width: $bar-height;
-	background-color: var(--primary-bg);
-	height: 100vh;
-	color: var(--primary-text);
-	border-right: 1px solid var(--primary-text);
+  width: $bar-height;
+  background-color: var(--primary-bg);
+  height: 100vh;
+  color: var(--primary-text);
+  border-right: 1px solid var(--primary-text);
+  width: $sidebar-width;
 
-
-	&-controls {
-		//for buttons
-		display: flex;
-		flex-direction: column;
-		gap: $gap-betwin-buttons;
-		align-items: center;
-		padding-top: $gap-betwin-buttons;
-	}
-
-	// sticky to top
-	position: sticky;
-	box-sizing: border-box;
+  // sticky to top
+  position: sticky;
+  box-sizing: border-box;
   top: 0;
   z-index: 10;
+
+  &-controls {
+    //for buttons
+    display: flex;
+    flex-direction: column;
+    gap: $gap-betwin-buttons;
+    align-items: center;
+    padding-top: $gap-betwin-buttons;
+    padding-inline: $sidebar-width;
+  }
+}
+
+.save {
+  @include control-button (1);
+
+	visibility: visible;
+}
+
+.align-end {
+	align-self: center;
+	justify-self: center;
 }
