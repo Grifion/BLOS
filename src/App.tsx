@@ -2,10 +2,10 @@ import { useState } from "react";
 import "./App.scss";
 import { TopBar } from "./components/bars/TopBar/TopBar";
 import { Board } from "./components/Board";
-import { BoardType } from "../types";
+import { BoardType } from "./types";
 
 function App() {
-  const [board, setBoard] = useState(BoardType.Overview);
+  const [board, setBoard] = useState(BoardType.Tasks);
 
   return (
     <>

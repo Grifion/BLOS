@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useTheme } from "../../../functions";
-import { BoardType } from "../../../../types";
+import { BoardType } from "../../../types";
 import "./TopBar.scss";
 
 type Props = {

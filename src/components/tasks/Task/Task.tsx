@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { SubTaskList } from "../SubTaskList";
 import cn from "classnames";
 import "./Task.scss";
-import { Subtask, TaskType } from "../../../../types";
 import { updateSubtaskState } from "../../../functions";
+import { Subtask, TaskType } from "../../../types";
+import { serverLink } from "../../../api/taskApi";
 
 type Props = {
   task?: TaskType; // Current task
@@ -11,6 +12,8 @@ type Props = {
   setSaving: (saving: boolean) => void; // Function to inform parent about saving state
   deleteVisible: boolean;
   deleteTask: (id: string) => void;
+  priorityVisible: boolean;
+  changeTaskPriority: (id: string, newPriority: number) => void;
 };
 
 export const Task: React.FC<Props> = ({
@@ -19,16 +22,20 @@ export const Task: React.FC<Props> = ({
   setSaving,
   deleteVisible,
   deleteTask,
+  priorityVisible,
+  changeTaskPriority,
 }) => {
   const [title, setTitle] = useState(task?.title || ""); // State for task title
   const [subtasks, setSubtasks] = useState<Subtask[]>(task?.subtasks || []); // State for subtasks
   const [subtaskText, setSubtaskText] = useState(""); // State for new subtask text
+  const [priority, setPriority] = useState(task?.priority || 1); // State for priority
   const lastSavedTask = useRef<TaskType | null>(null); // Ref to keep track of the last saved state
 
   // Synchronize state when task changes
   useEffect(() => {
     setTitle(task?.title || "");
     setSubtasks(task?.subtasks || []);
+    setPriority(task?.priority || 1); // Sync priority
     lastSavedTask.current = task || null; // Update last saved task
   }, [task]);
 
@@ -39,6 +46,7 @@ export const Task: React.FC<Props> = ({
         id: task?.id || Date.now().toString(),
         title,
         subtasks,
+        priority,
       };
 
       // Check if the task has changed before saving
@@ -70,6 +78,7 @@ export const Task: React.FC<Props> = ({
       id: task?.id || Date.now().toString(),
       title,
       subtasks: [...subtasks, newSubtask],
+      priority,
     });
   };
 
@@ -90,7 +99,15 @@ export const Task: React.FC<Props> = ({
       id: task?.id || Date.now().toString(),
       title,
       subtasks: updatedSubtasks,
+      priority,
     });
+  };
+
+  const handlePriorityChange = (newPriority: number) => {
+    setPriority(newPriority); // Update local priority
+    if (task?.id) {
+      changeTaskPriority(task.id, newPriority); // Call parent handler to save priority
+    }
   };
 
   const saveTask = async (currentTask: TaskType) => {
@@ -98,7 +115,7 @@ export const Task: React.FC<Props> = ({
 
     try {
       const response = await fetch(
-        `http://localhost:2001/tasks${task ? `/${task.id}` : ""}`,
+        `${serverLink}${task ? `/${task.id}` : ""}`,
         {
           method: task ? "PUT" : "POST", // PUT for update, POST for new task
           headers: { "Content-Type": "application/json" },
@@ -135,8 +152,22 @@ export const Task: React.FC<Props> = ({
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+      {priorityVisible && (
+        <select
+          className="task-block__priority"
+          value={priority}
+          onChange={(e) => handlePriorityChange(Number(e.target.value))}
+        >
+          {[...Array(10).keys()].map((n) => (
+            <option key={n + 1} value={n + 1}>
+              Priority {n + 1}
+            </option>
+          ))}
+        </select>
+      )}
       {deleteVisible && (
         <button
+          className="task-block__delete"
           onClick={(e) => {
             e.preventDefault();
             if (task?.id) {
@@ -144,7 +175,14 @@ export const Task: React.FC<Props> = ({
             }
           }}
         >
-          Delete
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            className="task-block__delete__svg"
+            viewBox="0 0 16 16"
+          >
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+          </svg>
         </button>
       )}
 

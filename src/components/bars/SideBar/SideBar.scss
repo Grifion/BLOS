@@ -1,4 +1,5 @@
 @use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as *;
 
 .nav {
   width: $bar-height;
@@ -6,6 +7,7 @@
   height: 100vh;
   color: var(--primary-text);
   border-right: 1px solid var(--primary-text);
+  width: $sidebar-width;
 
   // sticky to top
   position: sticky;
@@ -20,5 +22,17 @@
     gap: $gap-betwin-buttons;
     align-items: center;
     padding-top: $gap-betwin-buttons;
+    padding-inline: $sidebar-width;
   }
+}
+
+.save {
+  @include control-button (1);
+
+	visibility: visible;
+}
+
+.align-end {
+	align-self: center;
+	justify-self: center;
 }

@@ -1,6 +1,6 @@
 // theme-context.tsx
 import { useState, ReactNode } from "react";
-import { ThemeContext } from "../../../types";
+import { ThemeContext } from "../../types";
 
 interface ThemeProviderProps {
   children: ReactNode;

@@ -1,6 +1,5 @@
 @use '../../../../styles/mixins' as *;
 
-
-.add-task {
+.delete {
 	@include control-button;
 }

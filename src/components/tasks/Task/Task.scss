@@ -1,4 +1,6 @@
 @use "../../../styles/variables" as *;
+@use '../../../styles/mixins.scss' as *;
+
 
 .task-block {
   background-color: var(--secondary-bg);
@@ -18,4 +20,8 @@
       outline: none;
     }
   }
+
+	&__delete {
+		@include delete-button;
+	}
 }

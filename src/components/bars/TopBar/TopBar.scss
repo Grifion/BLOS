@@ -25,22 +25,22 @@
   &__link {
     @include primary-text($weight: 14px);
 
-    line-height: $line-height;
     background-color: var(--primary-bg);
     border: none;
     color: var(--primary-text);
-    padding-block: $padding-block;
     padding-inline: $padding-inline;
+    min-width: calc($sidebar-width + 10px);
 
     &-anim {
       transition: padding 0.3s ease, transform 0.3s ease, font-size 0.3s ease,
         font-weight 0.3s ease;
+      padding-block: $padding-block;
 
       &:hover {
         // animation for links
         transform: scale(1.1);
         padding: calc($padding-block * 0.95), calc($padding-inline * 1.2); /* Increase padding on hover */
-        font-size: 18px;
+        font-size: 14px;
         font-weight: bold;
       }
     }
