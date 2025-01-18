@@ -7,7 +7,6 @@
   height: 100vh;
   color: var(--primary-text);
   border-right: 1px solid var(--primary-text);
-  width: $sidebar-width;
 
   // sticky to top
   position: sticky;
@@ -27,12 +26,6 @@
 }
 
 .save {
-  @include control-button (1);
-
+  @include control-button;
 	visibility: visible;
-}
-
-.align-end {
-	align-self: center;
-	justify-self: center;
 }

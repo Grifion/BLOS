@@ -1,1 +1,1 @@
-export * from './ColoredCircle';
+export {ColoredCircle} from "./ColoerdCircle";

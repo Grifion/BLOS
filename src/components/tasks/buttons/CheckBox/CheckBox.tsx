@@ -1,3 +1,4 @@
+import "./CheckBox.scss";
 import React from "react";
 
 type Props = {
@@ -8,7 +9,8 @@ type Props = {
 export const CheckBox: React.FC<Props> = ({ isDone, setDone }) => (
   <input
     type="checkbox"
+    className="checkbox"
     checked={isDone}
-    onChange={(e) => setDone(e.target.checked)} 
+    onChange={(e) => setDone(e.target.checked)}
   />
 );

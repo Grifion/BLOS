@@ -11,8 +11,11 @@
 
   &__logo {
     height: calc($icon-size * 1.3);
-    fill-rule: var(--primary-text);
-    //add animation
+    fill: var(--primary-text); // Правильний спосіб задавати колір заповнення
+
+    &:hover {
+      fill: var(--button-bg); // Використовуємо fill замість fill-rule
+    }
   }
 }
 
@@ -30,22 +33,31 @@
     color: var(--primary-text);
     padding-inline: $padding-inline;
     min-width: calc($sidebar-width + 10px);
+    position: relative; 
+    display: inline-block; 
+		font-weight: bolder;
+		font-size: large;
 
-    &-anim {
-      transition: padding 0.3s ease, transform 0.3s ease, font-size 0.3s ease,
-        font-weight 0.3s ease;
-      padding-block: $padding-block;
+		@include on-hover;
 
-      &:hover {
-        // animation for links
-        transform: scale(1.1);
-        padding: calc($padding-block * 0.95), calc($padding-inline * 1.2); /* Increase padding on hover */
-        font-size: 14px;
-        font-weight: bold;
+    &[data-active="true"] {
+      color: var(--button-bg);
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px; 
+        left: calc($padding-inline);
+        width: calc(100% - ($padding-inline * 2));
+        height: 3px;
+        background-color: var(--button-bg);
+        border-radius: 2px;
       }
     }
   }
 }
+
+
 
 .btn {
   background: none;
@@ -59,5 +71,7 @@
   fill: var(--primary-text);
   margin-right: $padding-inline;
 
-  //add animation
+      &:hover {
+      fill: var(--button-bg); // Використовуємо fill замість fill-rule
+    }
 }

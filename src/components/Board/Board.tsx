@@ -1,8 +1,8 @@
-import { fetchNotes } from "../../api/notesApi";
+import { addNote, fetchNotes, deleteNote } from "../../api/notesApi";
 import { addTask } from "../../api/taskApi";
 import { BoardType, NoteType, TaskType } from "../../types";
 import { SideBar } from "../bars/SideBar";
-import { Notes } from "../notes/Notes";
+import { Notes } from "../notes/Notes/Notes";
 import { OverView } from "../overview";
 import { Tasks } from "../tasks";
 import "./Board.scss";
@@ -15,54 +15,92 @@ type Props = {
 export const Board: React.FC<Props> = ({ board }) => {
   const [isSaving, setIsSaving] = useState<boolean>(false);
   const [deleteVisible, setDeleteVisible] = useState<boolean>(false);
-	const [tasks, setTasks] = useState<TaskType[]>([]);
-	const [priorityVisible, setPriorityVisible] = useState<boolean>(false);
-	const [notes, setNotes] = useState<NoteType[]>([]);
+  const [tasks, setTasks] = useState<TaskType[]>([]);
+  const [priorityVisible, setPriorityVisible] = useState<boolean>(false);
+  const [notes, setNotes] = useState<NoteType[]>([]);
 
+  const addNewNote = async (): Promise<void> => {
+    const newNote: NoteType = {
+      id: Date.now().toString(),
+      title: "",
+      content: "",
+      createdAt: "",
+    };
+
+    try {
+      setIsSaving(true);
+      const savedNote = await addNote(newNote);
+      setNotes((prev) => [savedNote, ...prev]);
+    } catch (error) {
+      console.error("Error adding new note:", error);
+    } finally {
+      setIsSaving(false);
+    }
+  };
 
   const togglePriority = (): void => {
-    setPriorityVisible((prev) => !prev); // Toggle priority
-    if (!priorityVisible) setDeleteVisible(false); // If enabling priority, disable delete
+    setPriorityVisible((prev) => !prev);
+    if (!priorityVisible) setDeleteVisible(false);
   };
 
-  // Toggle delete visibility
   const toggleDelete = (): void => {
-    setDeleteVisible((prev) => !prev); // Toggle delete
-    if (!deleteVisible) setPriorityVisible(false); // If enabling delete, disable priority
+    setDeleteVisible((prev) => !prev);
+    setPriorityVisible(false);
   };
-	
- useEffect(() => {
-   const getNotes = async () => {
-     try {
-       const fetchedNotes = await fetchNotes();
-       setNotes(fetchedNotes);
-     } catch (error) {
-       console.error("Error fetching notes:", error);
-     }
-   };
-   getNotes();
- }, []);
+
+  useEffect(() => {
+    const getNotes = async () => {
+      try {
+        const fetchedNotes = await fetchNotes();
+        setNotes(fetchedNotes);
+      } catch (error) {
+        console.error("Error fetching notes:", error);
+      }
+    };
+    getNotes();
+  }, []);
 
   const addNewTask = async (): Promise<void> => {
     const emptyTask: TaskType = {
       id: Date.now().toString(),
       title: "",
-			subtasks: [],
-			priority: 1,
+      subtasks: [],
+      priority: 1,
     };
 
     try {
-      setIsSaving(true); // Start saving
+      setIsSaving(true);
       const savedTask = await addTask(emptyTask);
       setTasks((prev) => [savedTask, ...prev]);
     } catch (error) {
       console.error("Error saving new task:", error);
     } finally {
-      setIsSaving(false); // End saving
+      setIsSaving(false);
     }
   };
 
-  // Function to render the correct component based on board type
+  const addNew =
+    board === BoardType.Notes
+      ? addNewNote
+      : board === BoardType.Tasks
+      ? addNewTask
+      : undefined;
+
+  const handleNoteUpdate = (updatedNote: NoteType): void => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+    );
+  };
+
+  const handleNoteDelete = async (id: string): Promise<void> => {
+    try {
+      await deleteNote(id); 
+      setNotes((prevNotes) => prevNotes.filter((note) => note.id !== id));
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
+
   const renderBoardContent = (): JSX.Element => {
     switch (board) {
       case BoardType.Tasks:
@@ -73,14 +111,21 @@ export const Board: React.FC<Props> = ({ board }) => {
             deleteVisible={deleteVisible}
             addNewTask={addNewTask}
             tasks={tasks}
-						setTasks={setTasks}
-						priorityVisible={priorityVisible}
+            setTasks={setTasks}
+            priorityVisible={priorityVisible}
           />
         );
       case BoardType.Overview:
-				return <OverView tasks={tasks}  />
-			case BoardType.Notes:
-				return <Notes notes={notes} />;
+        return <OverView tasks={tasks} />;
+      case BoardType.Notes:
+        return (
+          <Notes
+            notes={notes}
+            onUpdate={handleNoteUpdate}
+            deleteVisible={deleteVisible} 
+            onDelete={handleNoteDelete} 
+          />
+        );
       case BoardType.About:
         return <div className="about">About content goes here.</div>;
       default:
@@ -91,11 +136,11 @@ export const Board: React.FC<Props> = ({ board }) => {
   return (
     <div className="board">
       <SideBar
-        addNewTask={addNewTask}
         isSaving={isSaving}
         changeVDelete={toggleDelete}
         board={board}
         changeVPriority={togglePriority}
+        addNew={addNew || (() => Promise.resolve())}
       />
       {renderBoardContent()}
     </div>

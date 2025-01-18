@@ -1,0 +1,32 @@
+@use "../../..//styles/variables.scss" as *;
+
+.note {
+	background-color: var(--secondary-bg);
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+	height: fit-content;
+	gap: $gap;
+	border: 1px solid var(--primary-text);
+	padding: $padding-block;
+	padding-inline: $padding-inline;
+	border-radius: $border-radius;
+
+  // &-title {
+
+	// }
+
+	// &-content {
+
+	// }
+}
+
+.input {
+  min-width: 300px; 
+  width: fit-content;
+  background-color: var(--secondary-bg); 
+  border: none;
+  color: var(--primary-text); 
+  outline: none;
+  box-sizing: border-box; 
+}

@@ -5,6 +5,8 @@ import "./Task.scss";
 import { updateSubtaskState } from "../../../functions";
 import { Subtask, TaskType } from "../../../types";
 import { serverLink } from "../../../api/taskApi";
+import { DeleteSmall } from "../../../shared/DeleteSmall/DeleteSmall";
+import { resizeTextarea } from "../../../helpers/textArea";
 
 type Props = {
   task?: TaskType; // Current task
@@ -145,46 +147,30 @@ export const Task: React.FC<Props> = ({
 
   return (
     <form className={cn({ "new-task": !task, task: !!task }, "task-block")}>
-      <input
+      <textarea
         className="task-block__input"
-        type="text"
         placeholder="Enter task title"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) => {
+          setTitle(e.target.value);
+          resizeTextarea(e);
+        }}
       />
+
       {priorityVisible && (
         <select
           className="task-block__priority"
           value={priority}
           onChange={(e) => handlePriorityChange(Number(e.target.value))}
         >
-          {[...Array(10).keys()].map((n) => (
+          {[...Array(5).keys()].map((n) => (
             <option key={n + 1} value={n + 1}>
-              Priority {n + 1}
+              {n + 1}
             </option>
           ))}
         </select>
       )}
-      {deleteVisible && (
-        <button
-          className="task-block__delete"
-          onClick={(e) => {
-            e.preventDefault();
-            if (task?.id) {
-              deleteTask(task.id);
-            }
-          }}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            className="task-block__delete__svg"
-            viewBox="0 0 16 16"
-          >
-            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-          </svg>
-        </button>
-      )}
+      {deleteVisible && <DeleteSmall onDelete={() => deleteTask(task!.id)} />}
 
       <div className="subtasks">
         <SubTaskList

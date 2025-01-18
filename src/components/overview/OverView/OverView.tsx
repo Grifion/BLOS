@@ -33,17 +33,17 @@ const partsCompleted: Part[] = [
 	
 const partsPriority: Part[] = [
   {
-    color: Color.Seventh, // Колір для високого пріоритету
+    color: Color.Seventh, // Color for high priority
     partSize: getPriority(tasks, TaskFilter.highPriority),
     partName: "High Priority",
   },
   {
-    color: Color.Third, // Колір для середнього пріоритету
+    color: Color.Third, // Color for medium priority
     partSize: getPriority(tasks, TaskFilter.mediumPriority),
     partName: "Medium Priority",
   },
   {
-    color: Color.Sixth, // Колір для низького пріоритету
+    color: Color.Sixth, // Color for low priority
     partSize: getPriority(tasks, TaskFilter.lowPriority),
     partName: "Low Priority",
   },

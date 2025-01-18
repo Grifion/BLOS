@@ -1,20 +1,22 @@
 import React from "react";
 import "./SideBar.scss";
-import { AddTask } from "../../tasks/buttons/AddTask";
-import { Delete } from "../../tasks/buttons/Delete";
+import { Delete } from "../../../shared/Delete";
 import { BoardType } from "../../../types";
 import { ChangePriority } from "../../tasks/buttons/ChangePriority/ChangePriority";
+import { AddNew } from "../../../shared/AddNew";
 
 type Props = {
-  addNewTask: () => void;
+  addNew: () => Promise<void>; // Both `addNewNote` and `addNewTask` match this signature
   isSaving: boolean;
   changeVDelete: () => void;
   board: BoardType;
   changeVPriority: () => void;
 };
 
+
+
 export const SideBar: React.FC<Props> = ({
-  addNewTask,
+  addNew,
   isSaving,
   changeVDelete,
   board,
@@ -23,15 +25,28 @@ export const SideBar: React.FC<Props> = ({
   <nav className="nav">
     <ul className="nav-controls">
       <li className="nav-controls__item">
-        {board === BoardType.Tasks && (
-          <>
-            <AddTask addNewTask={addNewTask} />
-            <Delete changeVDelete={changeVDelete} />
-            <ChangePriority changeVPriority={changeVPriority} />
-          </>
-        )}
+        {(() => {
+          switch (board) {
+            case BoardType.Tasks:
+              return (
+                <>
+                  <AddNew addNew={addNew} />
+                  <Delete changeVDelete={changeVDelete} />
+                  <ChangePriority changeVPriority={changeVPriority} />
+                </>
+              );
+            case BoardType.Notes:
+              return (
+                <>
+                  <AddNew addNew={addNew} />
+                  <Delete changeVDelete={changeVDelete} />
+                </>
+              );
+            default:
+              return null;
+          }
+        })()}
       </li>
-    </ul>
     <li className="nav-controls align-end save">
       {isSaving && (
         <svg
@@ -44,5 +59,6 @@ export const SideBar: React.FC<Props> = ({
         </svg>
       )}
     </li>
+    </ul>
   </nav>
 );
