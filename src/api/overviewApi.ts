@@ -29,7 +29,7 @@ export const getCount = (tasks: TaskType[], filter: TaskFilter): number => {
 
 export const getPriority = (tasks: TaskType[], filter: TaskFilter): number => {
 	return tasks.filter((task: TaskType) => {
-		const priority = task.priority || 0; // Якщо немає пріоритету, вважаємо його 0
+		const priority = task.priority || 0;
 
 		switch (filter) {
 			case TaskFilter.highPriority:

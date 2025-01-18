@@ -1,6 +1,5 @@
 @use "../../../styles/variables" as *;
-@use '../../../styles/mixins.scss' as *;
-
+@use "../../../styles/mixins.scss" as *;
 
 .task-block {
   background-color: var(--secondary-bg);
@@ -21,7 +20,14 @@
     }
   }
 
-	&__delete {
-		@include delete-button;
-	}
+  &__priority {
+    background-color: var(--secondary-bg);
+    color: var(--primary-text);
+    border: 1px solid var(--primary-text);
+    border-radius: 10%;
+
+    &:hover {
+      border-color: var(--button-bg);
+    }
+  }
 }

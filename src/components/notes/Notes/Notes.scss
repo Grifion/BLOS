@@ -1,0 +1,10 @@
+@use "../../../styles/variables" as *;
+
+.notes-block {
+  display: flex;
+  background-color: var(--secondary-bg);
+  flex-direction: column;
+  gap: $gap;
+  padding-inline: $padding-inline;
+  padding-block: $padding-inline;
+}

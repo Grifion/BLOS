@@ -1,5 +1,3 @@
-// api/tasksApi.ts
-
 import { TaskType } from "../types";
 
 export const serverLink = 'http://localhost:2001/tasks'

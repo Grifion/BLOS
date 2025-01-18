@@ -1,9 +1,10 @@
 @use "./variables" as *;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 @mixin primary-text(
   $color: var(--primary-text),
   $size: 17,
-  $family: "Poppins",
+  $family: "Roboto",
   $weight: bold,
   $lineHeight: 1.5,
   $spacing: 0.5px
@@ -40,7 +41,7 @@
   bottom: calc($icon-size * 1.5);
 }
 
-@mixin control-button($size: 1) {
+@mixin control-button($size: 1.5) {
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -50,25 +51,23 @@
 
   &__svg {
     border: 1px solid var(--primary-text);
+    padding: 3px;
+    border-radius: 10%;
     fill: var(--primary-text);
     // border-radius: 50px;
     height: calc($icon-size * $size);
     width: calc($icon-size * $size);
     transition: transform 0.3s ease;
+
+    &:hover {
+      border-color: var(--button-bg);
+      fill: var(--button-bg);
+    }
   }
 }
 
-@mixin delete-button {
-	padding-top: 2px;
-  background-color: var(--secondary-bg);
-  border: none;
-
-  &__svg {
-    fill: var(--primary-text);
-    border: 1px solid var(--primary-text);
-    height: calc($icon-size / 2);
-    width: calc($icon-size / 2);
-    display: block; // Зробимо SVG блочним елементом, щоб він не розтягувався по ширині
+@mixin on-hover {
+  &:hover {
+    color: var(--button-bg);
   }
 }
-

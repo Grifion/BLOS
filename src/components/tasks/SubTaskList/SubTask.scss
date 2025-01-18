@@ -1,22 +1,37 @@
-@use '../../../styles/mixins.scss' as *;
-
 .subtask {
-  &__delete {
-		@include delete-button;
-  }
-
   &-list {
     &__item {
+      display: flex; /* Ensure the content inside is flexible */
+      padding-left: 10px;
+      position: relative;
+
       &-text {
         color: var(--primary-text);
         background-color: var(--secondary-bg);
         border: none;
-				align-items: baseline;
+        align-items: baseline;
+        padding-left: 20px; /* Space for checkbox */
+        width: 300px;
+        min-height: 10px; /* Ensure proper space */
+        resize: none;
 
         &:focus {
           border: none;
           outline: none;
         }
+      }
+
+      &__content {
+        display: flex;
+        position: relative;
+        align-items: flex-start; /* Align checkbox to the top */
+      }
+
+      input[type="checkbox"] {
+        position: absolute;
+        top: 8px; /* Adjust positioning */
+        left: 8px;
+        margin: 0;
       }
     }
   }

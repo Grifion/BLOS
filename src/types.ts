@@ -1,7 +1,5 @@
 import { createContext } from "react";
 
-// types.ts
-
 export interface NoteType {
   id: string;
   title: string;
